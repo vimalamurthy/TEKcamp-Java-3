@@ -29,7 +29,12 @@ class Sync extends Thread {
         //this prints out an empty list. write some code that will allow the data generated in the syncThread to
         // show up  here.  There is a brute force way and a more sophisticated way.  Either or will work, but
         // strive for sophistication :)
-
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e){
+            System.out.println(e);
+        }
+        System.out.println(syncThread.nums);
     }
     
 }
