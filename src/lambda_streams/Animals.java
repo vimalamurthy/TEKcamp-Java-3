@@ -83,12 +83,15 @@ class Animals {
 
     static List<String> flipAnimals(boolean mutate) {
         if (mutate){
-            Collections.reverse(animals);
+            animals = animals.stream()
+                    .sorted((o1,o2)-> o2.compareTo(o1))
+                    .collect(Collectors.toList());
             return animals;
         } else {
-            List<String> newAnimals = new ArrayList<String>(animals);
-            Collections.reverse(newAnimals);
-            return newAnimals;
+            List<String> reverseanimalList = animals.stream()
+                    .sorted((o1,o2)-> o2.compareTo(o1))
+                    .collect(Collectors.toList());
+            return reverseanimalList;
         }
     }
 
