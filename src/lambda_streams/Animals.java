@@ -63,8 +63,7 @@ class Animals {
     };
 
     static List<String> lowerFirst(List<String> animalList, boolean mutate) {
-
-        if (mutate) {
+      if (mutate) {
             animals=
                     animals.stream()
                             .map(x -> x.toUpperCase())
@@ -83,14 +82,11 @@ class Animals {
 
     static List<String> flipAnimals(boolean mutate) {
         if (mutate){
-            animals = animals.stream()
-                    .sorted((o1,o2)-> o2.compareTo(o1))
-                    .collect(Collectors.toList());
+            Collections.reverse(animals);
             return animals;
         } else {
-            List<String> reverseanimalList = animals.stream()
-                    .sorted((o1,o2)-> o2.compareTo(o1))
-                    .collect(Collectors.toList());
+            List<String> reverseanimalList =  new ArrayList<String>(animals);
+            Collections.reverse(reverseanimalList);
             return reverseanimalList;
         }
     }
