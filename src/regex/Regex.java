@@ -1,6 +1,5 @@
 package regex;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -42,17 +41,32 @@ class Regex {
         // although you can split it that way if you wish.  We just want an array that everything that is not 'sleepy'.
 
         String sleepy = "I felt sleepy because I saw the others were sleepy and because I knew I should feel sleepy, but I wasn't really sleepy.  If you're sleepy and you know it, clap your hands.  Keep on being sleepy until you actually become sleepy";
+        String[] words = null;
+        System.out.println(sleepy);
 
-        System.out.println(sleepy.replaceAll("sleepy", ""));
+        words = sleepy.replaceAll("sleepy", "").split(" ");
+
+        System.out.println("Replacing sleepy: " );
+        for (String s : words){
+            System.out.print(s+" ");
+        }
+        System.out.println("\nString with punctuations :");
         // 4.b combine the array that you just created into a string
-        String not_sleepy; //punctuation marks will be here
+        //punctuation marks will be here
+
+        String not_sleepy = Arrays.toString(words);
+        System.out.println("String with no sleepy: " +not_sleepy);
 
         //4.c remove the punctuation marks from the notSleepy string.
-        String notSleepy; //no punctuation marks should be here.
+        //no punctuation marks should be here.
+        String notSleepy=not_sleepy.replaceAll("[,|.|']","");
+
+        System.out.println("Remove punctuations : "+notSleepy);
 
         //4.d Now replace all the occurences of 'sleepy' with the word 'happy'.  Call the new string happy.  
 
-        String happy;
+        String happy = sleepy.replaceAll("sleepy", "happy");
+        System.out.println("Adding happy " +happy);
 
         //BONUS : 
         //5. You are looking for unicode arrow symbols in a string.  https://jrgraphix.net/r/Unicode/2190-21FF is a selection of
@@ -61,8 +75,25 @@ class Regex {
 
         String[] arrows = {"\u21FD", "\u26F7", "\u21FF", "\u21EF","\u21EC", "\u26F9","\u26FD","\u26D4","\u26A5","\u21FD","\u2190", "\u26A1","\u21BA","\u2196","\u2603","\u21FD"};
         for(String s : arrows){
-            System.out.println(s);
+            System.out.print("\t" +s);
         }
+        matcher.reset();
+        String patternString = "[u21F]";
+        Pattern pattern = Pattern.compile(patternString,Pattern.UNICODE_CASE); //,Pattern.UNICODE_CASE);
+
+        for (String s : arrows){
+            matcher = pattern.matcher(s);
+            while (matcher.find()){
+                System.out.println("\nMatch String start(): " +matcher.start()+" to " +matcher.end());
+            }
+        }
+
+
+        //matcher = pattern.matcher(arrowString);
+        //while(matcher.find()) {
+//            System.out.println("\nMatch String start(): " +matcher.start()+" to " +matcher.end());
+  //      }
+
     }
 }
 
